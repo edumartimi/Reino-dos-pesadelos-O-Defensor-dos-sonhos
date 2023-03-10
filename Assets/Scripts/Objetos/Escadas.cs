@@ -7,6 +7,9 @@ public class Escadas : MonoBehaviour
     private bool encostando;
     public Transform Andardecima;
     private GameObject personagem;
+    float tempo;
+    float tempoanim;
+    bool invisivel;
     private void OnTriggerStay2D(Collider2D collision)
     {
         encostando = true;
@@ -21,7 +24,7 @@ public class Escadas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        invisivel = false;
     }
 
     // Update is called once per frame
@@ -29,11 +32,20 @@ public class Escadas : MonoBehaviour
     {
         if (encostando && Input.GetKeyDown(KeyCode.UpArrow)) 
         {
-
             personagem.GetComponent<SpriteRenderer>().enabled = false;
-            personagem.transform.position =  Andardecima.position;
-            personagem.GetComponent<SpriteRenderer>().enabled = true;
-
+            personagem.transform.position = Andardecima.position;
+            invisivel = true;
+        }
+        if (invisivel)
+        {
+            tempo = tempo + Time.deltaTime;
+            tempoanim = 1f;
+            if (tempo > tempoanim)
+            {
+                tempo = 0;
+                personagem.GetComponent<SpriteRenderer>().enabled = true;
+                invisivel = false;
+            }
         }
     }
 }

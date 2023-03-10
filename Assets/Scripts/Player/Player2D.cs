@@ -9,11 +9,15 @@ public class Player2D : MonoBehaviour
     public float JumpForce;
     public bool pulo;
     public float Velocidade;
+    private bool podepular;
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Chao") 
+        {
+            podepular = true;
+        }
     }
 
     // Start is called before the first frame update
@@ -25,9 +29,10 @@ public class Player2D : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && podepular)
         {
-            pulo = true;
+            podepular = false;
+            pulo = true;  
         }
     }
     // Update is called once per frame
