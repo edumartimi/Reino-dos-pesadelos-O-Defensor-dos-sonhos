@@ -66,11 +66,6 @@ public class Player2D : MonoBehaviour
         }
 
 
-        if (pulo)
-        {
-            fisica.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-            pulo = false;
-        }
 
     }
 
