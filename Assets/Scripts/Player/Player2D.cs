@@ -12,6 +12,10 @@ public class Player2D : MonoBehaviour
     public float Velocidade;
     private bool podepular;
     public bool pausado;
+    public GameObject pressE;
+    public bool colidindo;
+    public GameObject Sistema_Fala;
+    public DialogueSystemWithImages sistema_dialogos;
 
 
 
@@ -23,6 +27,23 @@ public class Player2D : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Press")
+        {
+            pressE.SetActive(true);
+            colidindo = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (pressE.active) 
+        {
+            pressE.SetActive(false);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +51,24 @@ public class Player2D : MonoBehaviour
         fisica = GetComponent<Rigidbody2D>();
         posicaoplayer = GetComponent<Transform>();
         pausado = false;
+        colidindo = false;
 
     }
 
     private void Update()
     {
+        if (colidindo) 
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                sistema_dialogos.StartTyping();
+                if (!Sistema_Fala.gameObject.active)
+                {
+                    Sistema_Fala.gameObject.SetActive(true);
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pause_play();

@@ -33,7 +33,10 @@ public class DialogueSystemWithImages : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartDialogueWithDelay());
+        if (delayBeforeStart != 0)
+        {
+            StartCoroutine(StartDialogueWithDelay());
+        }
     }
 
     private IEnumerator StartDialogueWithDelay()
@@ -48,7 +51,7 @@ public class DialogueSystemWithImages : MonoBehaviour
 
     }
 
-    private void StartTyping()
+    public void StartTyping()
     {
         isTyping = true;
         dialogueText.text = "";
@@ -79,9 +82,7 @@ public class DialogueSystemWithImages : MonoBehaviour
     private void EndDialogue()
     {
         dialogueText.text = "";
-        characterImage.sprite = null;
-        characterImage.enabled = false;
-        bordaimage.enabled = false;
+        bordaimage.gameObject.SetActive(false);
         currentCharacterSprites.Clear();
         carro.SetTrigger("sair");
     }
