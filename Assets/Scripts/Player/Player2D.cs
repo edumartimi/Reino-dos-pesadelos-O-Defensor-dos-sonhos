@@ -7,25 +7,11 @@ public class Player2D : MonoBehaviour
     private Animator animador;
     private Rigidbody2D fisica;
     private Transform posicaoplayer;
-    public float JumpForce;
-    public bool pulo;
     public float Velocidade;
-    private bool podepular;
     public bool pausado;
     public GameObject pressE;
     public bool colidindo;
-    public GameObject Sistema_Fala;
-    public DialogueSystemWithImages sistema_dialogos;
 
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Chao") 
-        {
-            podepular = true;
-        }
-    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -47,7 +33,7 @@ public class Player2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animador = GetComponent<Animator>();
+       animador = GetComponent<Animator>();
         fisica = GetComponent<Rigidbody2D>();
         posicaoplayer = GetComponent<Transform>();
         pausado = false;
@@ -57,31 +43,13 @@ public class Player2D : MonoBehaviour
 
     private void Update()
     {
-        if (colidindo) 
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                sistema_dialogos.StartTyping();
-                if (!Sistema_Fala.gameObject.active)
-                {
-                    Sistema_Fala.gameObject.SetActive(true);
-                }
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pause_play();
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && podepular)
-        {
-            podepular = false;
-            pulo = true;  
-        }
         int teste = Mathf.RoundToInt(fisica.velocity.x);
 
-        animador.SetInteger("velocidade",teste) ;
+       animador.SetInteger("velocidade",teste) ;
     }
     // Update is called once per frame
     private void FixedUpdate()
