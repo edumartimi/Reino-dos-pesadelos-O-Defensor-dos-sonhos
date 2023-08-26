@@ -11,7 +11,21 @@ public class Player2D : MonoBehaviour
     public bool pausado;
     public GameObject pressE;
     public bool colidindo;
+    private bool pegar_lanterna;
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "lanterna") 
+        {
+            pegar_lanterna = true;
+        }
+        if (collision.gameObject.tag == "carro" && pegar_lanterna)
+        {
+            animador.SetTrigger("lanterna");
+            animador.SetTrigger("abaixa");
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
