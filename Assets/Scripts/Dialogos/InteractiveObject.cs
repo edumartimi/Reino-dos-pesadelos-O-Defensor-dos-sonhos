@@ -4,10 +4,11 @@ public class InteractiveObject : MonoBehaviour
 {
     public string[] sentences; // Defina os diálogos do objeto interativo
     private bool canInteract = false;
+    public bool anelscript = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !anelscript)
         {
             canInteract = true;
         }

@@ -34,6 +34,7 @@ public class Player2D : MonoBehaviour
             pressE.SetActive(true);
             colidindo = true;
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -44,7 +45,6 @@ public class Player2D : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
        animador = GetComponent<Animator>();

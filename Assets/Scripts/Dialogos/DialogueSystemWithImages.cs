@@ -33,6 +33,7 @@ public class DialogueSystemWithImages : MonoBehaviour
 
     private void Start()
     {
+
         if (delayBeforeStart != 0)
         {
             StartCoroutine(StartDialogueWithDelay());
