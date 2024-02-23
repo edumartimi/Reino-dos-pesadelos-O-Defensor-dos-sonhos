@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
     public GameObject MainCamera;
     public GameObject Inventario;
     public bool interacao;
+    public Animator CamAnimator;
+    public bool camera2d;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +24,29 @@ public class CameraController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E)) 
             {
-                MainCamera.active =false;
-                Inventario.active = true;
-                Cursor.visible = true;
+                changecam();
+                CamAnimator.SetTrigger("olhar");
             }
         
         }
     }
+
+   public void changecam()
+    {
+        if (MainCamera.active)
+        {
+            MainCamera.active = false;
+            Inventario.active = true;
+            Cursor.visible = true;
+            camera2d = false;
+        }
+        else 
+        {
+            camera2d = true;
+            MainCamera.active = true;
+            Inventario.active = false;
+            Cursor.visible = false;
+        }
+    }
+
 }

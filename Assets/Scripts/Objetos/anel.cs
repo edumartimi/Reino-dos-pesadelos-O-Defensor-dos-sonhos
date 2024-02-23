@@ -10,6 +10,7 @@ public class anel : MonoBehaviour
     public float tempo;
     public InteractiveObject portao;
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "luz") 

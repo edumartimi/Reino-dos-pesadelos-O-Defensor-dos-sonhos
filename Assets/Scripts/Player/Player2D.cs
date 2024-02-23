@@ -12,6 +12,7 @@ public class Player2D : MonoBehaviour
     public GameObject pressE;
     public bool colidindo;
     private bool pegar_lanterna;
+    public bool lanternajapega;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,7 +24,7 @@ public class Player2D : MonoBehaviour
         if (collision.gameObject.tag == "carro" && pegar_lanterna)
         {
             animador.SetTrigger("lanterna");
-            animador.SetTrigger("abaixa");
+            animador.SetTrigger("abaixar");
         }
     }
 
@@ -64,8 +65,14 @@ public class Player2D : MonoBehaviour
         int teste = Mathf.RoundToInt(fisica.velocity.x);
 
        animador.SetInteger("velocidade",teste) ;
+
+
+        if (lanternajapega) 
+        {
+            animador.SetTrigger("lanterna");
+        }
     }
-    // Update is called once per frame
+  
     private void FixedUpdate()
     {
        
@@ -73,12 +80,12 @@ public class Player2D : MonoBehaviour
 
         if (Input.GetAxis("Horizontal") < 0 && posicaoplayer.localScale.x != -1) 
         {
-            posicaoplayer.localScale = new Vector3(posicaoplayer.localScale.x * -1, 1, 1);
+           posicaoplayer.localScale = new Vector3(posicaoplayer.localScale.x * -1, 1, 1);
         }
 
         if (Input.GetAxis("Horizontal") > 0 && posicaoplayer.localScale.x != 1)
         {
-            posicaoplayer.localScale = new Vector3(posicaoplayer.localScale.x * -1, 1, 1);
+           posicaoplayer.localScale = new Vector3(posicaoplayer.localScale.x * -1, 1, 1);
         }
 
 
