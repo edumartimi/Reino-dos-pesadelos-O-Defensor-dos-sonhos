@@ -8,6 +8,7 @@ public class irparajardim : MonoBehaviour
 {
     public bool vamoimbora;
     public Image tela_escurecendo;
+    public Animator player_anim;
     float tempoescurecendo;
     int contador;
     private void OnTriggerEnter(Collider other)
@@ -17,6 +18,11 @@ public class irparajardim : MonoBehaviour
 
     private void Update()
     {
+
+        if (vamoimbora) 
+        {
+            player_anim.SetBool("frente", true);
+        }
         if (vamoimbora && Input.GetKeyDown(KeyCode.E)) 
         {
             contador++;
